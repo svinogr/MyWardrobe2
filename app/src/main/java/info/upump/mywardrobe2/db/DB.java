@@ -7,6 +7,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import info.upump.mywardrobe2.model.ItemMainMenu;
+
 /**
  * Created by Сергей on 17.08.2017.
  */
@@ -65,7 +67,13 @@ public class DB {
     }
 
     // добавить запись в DB_TABLE
-    public void addMain(String txt) {
+    public void addMain(ItemMainMenu itemMainMenu) {
+        ContentValues cv = new ContentValues();
+        cv.put(TABLE_KEY_NAME, itemMainMenu.getName());
+        //   cv.put(COLUMN_IMG, img);
+        mDB.insert(TABLE_MAIN_MENU, null, cv);
+    }
+    public void addSubMain(String txt) {
         ContentValues cv = new ContentValues();
         cv.put(TABLE_KEY_NAME, txt);
         //   cv.put(COLUMN_IMG, img);

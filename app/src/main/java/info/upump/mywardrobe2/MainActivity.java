@@ -1,5 +1,6 @@
 package info.upump.mywardrobe2;
 
+import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -16,7 +17,9 @@ import android.view.MenuItem;
 import android.view.View;
 
 import info.upump.mywardrobe2.db.DB;
+import info.upump.mywardrobe2.dialog.MainItemDialog;
 import info.upump.mywardrobe2.fragments.MainMenuFragment;
+import info.upump.mywardrobe2.model.ItemMainMenu;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -66,8 +69,12 @@ public class MainActivity extends AppCompatActivity
     private void addItem(String tag) {
         switch (tag){
             case "MainMenuFragment":
+                ItemMainMenu itemMainMenu = new ItemMainMenu();
                 //TODO вставляем окно
-                db.addMain("Половичек");
+                DialogFragment mainItemDialog = new MainItemDialog();
+                mainItemDialog.show(getFragmentManager(),"sss");
+              //  mainItemDialog.getDialog().
+                db.addMain(itemMainMenu);
                 fragment.getLoaderManager().getLoader(0).forceLoad();
                 break;
         }
